@@ -18,6 +18,7 @@ package com.deneb.apps.core.di
 import android.content.Context
 import com.deneb.apps.AndroidApplication
 import com.deneb.apps.BuildConfig
+import com.deneb.apps.features.apods.ApodRepository
 import com.deneb.apps.features.movies.MoviesRepository
 import dagger.Module
 import dagger.Provides
@@ -50,4 +51,5 @@ class ApplicationModule(private val application: AndroidApplication) {
     }
 
     @Provides @Singleton fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
+    @Provides @Singleton fun provideApodsRepository(datasource: ApodRepository.Network) : ApodRepository = datasource
 }

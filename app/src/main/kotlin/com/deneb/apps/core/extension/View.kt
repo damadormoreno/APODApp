@@ -55,12 +55,12 @@ fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentA
 }
 
 private class ImageViewBaseTarget (var imageView: ImageView?, var activity: FragmentActivity?) : BaseTarget<Drawable>() {
-    override fun removeCallback(cb: SizeReadyCallback?) {
+    override fun removeCallback(cb: SizeReadyCallback) {
         imageView = null
         activity = null
     }
 
-    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>) {
+    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
         imageView?.setImageDrawable(resource)
         activity?.supportStartPostponedEnterTransition()
     }
