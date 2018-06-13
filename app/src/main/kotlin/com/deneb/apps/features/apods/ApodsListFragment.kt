@@ -1,67 +1,64 @@
 package com.deneb.apps.features.apods
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
-import android.view.ViewGroup
 import com.deneb.apps.R
+import com.deneb.apps.core.exception.Failure
+import com.deneb.apps.core.extension.*
+import com.deneb.apps.core.navigation.BottomNavActivity
+import com.deneb.apps.core.platform.BaseFragment
+import kotlinx.android.synthetic.main.fragment_apods_list.*
+import org.jetbrains.anko.support.v4.toast
+import javax.inject.Inject
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ApodsListFragment : BaseFragment() {
 
-class ApodsListFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
+
+    @Inject lateinit var apodAdapter: ApodsAdapter
+
+    private lateinit var apodsListViewModel: ApodsListViewModel
+
+    override fun layoutId(): Int = R.layout.fragment_apods_list
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        appComponent.inject(this)
+
+        apodsListViewModel = viewModel(viewModelFactory) {
+            observe(apods, ::renderApodsList)
+            failure(failure, ::handleFailure)
         }
+
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_apods_list, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initializeView()
+        loadApodsList()
     }
 
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
+    private fun initializeView() {
+        rvApods.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        rvApods.adapter = apodAdapter
+
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+    private fun loadApodsList() {
+        showProgress()
+        apodsListViewModel.loadApods()
+    }
+
+    private fun renderApodsList(apods: List<ApodView>?) {
+        apodAdapter.collection = apods.orEmpty()
+        hideProgress()
+    }
+
+    private fun handleFailure(failure: Failure?) {
+        when (failure) {
+            is Failure.NetworkConnection -> toast(R.string.failure_network_connection)
+            is Failure.ServerError -> toast(R.string.failure_server_error)
+            is ApodFailure.ListNotAvailable -> toast(R.string.failure_movies_list_unavailable)
         }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                ApodsListFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
     }
 }

@@ -20,11 +20,7 @@
             android:name=".core.navigation.RouteActivity"
             android:noHistory="true"
             android:theme="@style/AppTheme.Translucent">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".features.login.LoginActivity"
@@ -36,7 +32,13 @@
             android:name=".features.movies.MovieDetailsActivity"
             android:label="@string/movie_details_screen_title"
             android:theme="@style/AppTheme.Translucent"></activity>
-        <activity android:name=".core.navigation.BottomNavActivity"></activity>
+        <activity android:name=".core.navigation.BottomNavActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -17,9 +17,11 @@ package com.deneb.apps.core.di
 
 import com.deneb.apps.AndroidApplication
 import com.deneb.apps.core.di.viewmodel.ViewModelModule
+import com.deneb.apps.core.navigation.BottomNavActivity
 import com.deneb.apps.features.movies.MovieDetailsFragment
 import com.deneb.apps.features.movies.MoviesFragment
 import com.deneb.apps.core.navigation.RouteActivity
+import com.deneb.apps.features.apods.ApodsListFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -28,7 +30,10 @@ import javax.inject.Singleton
 interface ApplicationComponent {
     fun inject(application: AndroidApplication)
     fun inject(routeActivity: RouteActivity)
+    fun inject(bottomNavActivity: BottomNavActivity)
 
     fun inject(moviesFragment: MoviesFragment)
     fun inject(movieDetailsFragment: MovieDetailsFragment)
+
+    fun inject(apodListFragment: ApodsListFragment)
 }
