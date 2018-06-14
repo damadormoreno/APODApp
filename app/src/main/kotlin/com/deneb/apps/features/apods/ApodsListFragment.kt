@@ -1,6 +1,7 @@
 package com.deneb.apps.features.apods
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.deneb.apps.R
@@ -39,7 +40,7 @@ class ApodsListFragment : BaseFragment() {
     }
 
     private fun initializeView() {
-        rvApods.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        rvApods.layoutManager = LinearLayoutManager(activity)
         rvApods.adapter = apodAdapter
 
     }

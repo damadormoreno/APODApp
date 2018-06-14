@@ -11,6 +11,4 @@ class GetApods
 
     data class Params(val startDate: String, val endDate: String)
 
-
-
 }
