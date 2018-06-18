@@ -4,16 +4,23 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
+import com.deneb.apps.AndroidApplication
 import com.deneb.apps.R
+import com.deneb.apps.core.di.ApplicationComponent
 import com.deneb.apps.features.apods.ApodsListFragment
 import org.jetbrains.anko.find
 
 
 class BottomNavActivity : AppCompatActivity() {
 
+    private val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
+        (application as AndroidApplication).appComponent
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_nav)
+        appComponent.inject(this)
 
         val bottombar = find<BottomNavigationBar>(R.id.bottomBar)
 

@@ -84,7 +84,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5"
     implementation "org.jetbrains.anko:anko:0.10.4"
     implementation "com.android.support:appcompat-v7:27.1.1"
-    implementation "com.android.support.constraint:constraint-layout:1.1.1"
+    implementation "com.android.support.constraint:constraint-layout:1.1.2"
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation "com.android.support:cardview-v7:27.1.1"
     implementation "com.android.support:recyclerview-v7:27.1.1"
@@ -98,6 +98,8 @@ dependencies {
     //navBar
     implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
     implementation 'com.ncapdevi:frag-nav:2.4.0'
+
+    implementation 'com.github.flipkart-incubator:android-inline-youtube-view:1.0.2'
 
     //Unit/Integration tests dependencies
     testImplementation unitTestDependencies.kotlin

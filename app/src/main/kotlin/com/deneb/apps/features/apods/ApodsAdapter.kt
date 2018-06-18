@@ -6,9 +6,17 @@ import android.view.ViewGroup
 import com.deneb.apps.R
 import com.deneb.apps.core.extension.inflate
 import com.deneb.apps.core.extension.loadFromUrl
+import com.deneb.apps.core.navigation.BottomNavActivity
 import kotlinx.android.synthetic.main.row_apod.view.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 import javax.inject.Inject
 import kotlin.properties.Delegates
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.resource.bitmap.VideoBitmapDecoder
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
+import com.deneb.apps.core.extension.loadVideoFromUrl
+
 
 class ApodsAdapter
 @Inject constructor(): RecyclerView.Adapter<ApodsAdapter.ViewHolder>() {
@@ -28,8 +36,13 @@ class ApodsAdapter
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(apodView: ApodView) {
-            itemView.ivApod.loadFromUrl(apodView.url)
+            if (apodView.media_type.equals("video")){
+                itemView.ivApod.loadVideoFromUrl(apodView.url)
+            }else{
+                itemView.ivApod.loadFromUrl(apodView.url)
+            }
             itemView.tvTitle.text = apodView.title
+            itemView.onClick {  }
         }
     }
 
