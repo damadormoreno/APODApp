@@ -28,8 +28,6 @@ import com.bumptech.glide.request.target.BaseTarget
 import com.bumptech.glide.request.target.SizeReadyCallback
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
-import android.media.MediaMetadataRetriever
-import com.bumptech.glide.request.RequestOptions
 
 
 fun View.cancelTransition() {
@@ -51,14 +49,6 @@ fun ImageView.loadFromUrl(url: String) =
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(this)!!
 
-fun ImageView.loadVideoFromUrl(url: String) {
-    val requestOptions =  RequestOptions()
-    requestOptions.isMemoryCacheable()
-    Glide.with(this.context.applicationContext)
-            .setDefaultRequestOptions(requestOptions)
-            .load(url)
-            .into(this)
-}
 
 fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentActivity) {
     val target: Target<Drawable> = ImageViewBaseTarget(this,
