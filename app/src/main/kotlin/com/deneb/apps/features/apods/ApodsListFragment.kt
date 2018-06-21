@@ -46,13 +46,13 @@ class ApodsListFragment : BaseFragment() {
     }
 
     private fun loadApodsList() {
-        showProgress()
+        progress.visibility = View.VISIBLE
         apodsListViewModel.loadApods()
     }
 
     private fun renderApodsList(apods: List<ApodView>?) {
         apodAdapter.collection = apods.orEmpty()
-        hideProgress()
+        progress.visibility = View.GONE
     }
 
     private fun handleFailure(failure: Failure?) {

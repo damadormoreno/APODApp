@@ -10,9 +10,9 @@ fun Date.formatToSringDate(): String{
     return sdf.format(this)
 }
 
-fun Date.threMonthsless(date: Date) : String {
+fun Date.oneMonthless() : String {
     val c = Calendar.getInstance()
-    c.time = date
-    c.add(Calendar.MONTH, -3)
+    c.time = this
+    c.add(Calendar.MONTH, -1)
     return c.time.formatToSringDate()
 }

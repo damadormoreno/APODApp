@@ -2,7 +2,7 @@ package com.deneb.apps.features.apods
 
 import android.arch.lifecycle.MutableLiveData
 import com.deneb.apps.core.extension.formatToSringDate
-import com.deneb.apps.core.extension.threMonthsless
+import com.deneb.apps.core.extension.oneMonthless
 import com.deneb.apps.core.platform.BaseViewModel
 import java.util.*
 import javax.inject.Inject
@@ -13,7 +13,7 @@ class ApodsListViewModel
     val date: Date = Date()
 
     fun loadApods() = getApods.execute({it.either(::handleFailure, ::handleApodsList)},
-            GetApods.Params(date.threMonthsless(date), date.formatToSringDate()))
+            GetApods.Params(date.oneMonthless(), date.formatToSringDate()))
 
     private fun handleApodsList(apods: List<Apod>) {
         this.apods.value = apods.map {
