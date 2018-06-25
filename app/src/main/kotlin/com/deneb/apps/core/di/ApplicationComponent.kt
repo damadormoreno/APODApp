@@ -21,6 +21,7 @@ import com.deneb.apps.core.navigation.BottomNavActivity
 import com.deneb.apps.features.movies.MovieDetailsFragment
 import com.deneb.apps.features.movies.MoviesFragment
 import com.deneb.apps.core.navigation.RouteActivity
+import com.deneb.apps.features.apods.ApodFragment
 import com.deneb.apps.features.apods.ApodsListFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -36,4 +37,5 @@ interface ApplicationComponent {
     fun inject(movieDetailsFragment: MovieDetailsFragment)
 
     fun inject(apodListFragment: ApodsListFragment)
+    fun inject(apodFragment: ApodFragment)
 }

@@ -17,6 +17,7 @@ package com.deneb.apps.core.di.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.deneb.apps.features.apods.ApodViewModel
 import com.deneb.apps.features.apods.ApodsListViewModel
 import com.deneb.apps.features.movies.MovieDetailsViewModel
 import com.deneb.apps.features.movies.MoviesViewModel
@@ -43,6 +44,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ApodsListViewModel::class)
     abstract fun bindsApodsListViewModel(apodsListViewModel: ApodsListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ApodViewModel::class)
+    abstract fun bindsApodViewModel(apodViewModel: ApodViewModel): ViewModel
 
 
 }

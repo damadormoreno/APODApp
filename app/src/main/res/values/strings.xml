@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movies Kotlin</string>
+    <string name="app_name">APOD App</string>
 
     <string name="action_refresh">Refresh</string>
 

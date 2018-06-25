@@ -7,8 +7,12 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.deneb.apps.AndroidApplication
 import com.deneb.apps.R
 import com.deneb.apps.core.di.ApplicationComponent
+import com.deneb.apps.features.apods.ApodFragment
 import com.deneb.apps.features.apods.ApodsListFragment
 import org.jetbrains.anko.find
+import android.os.Build
+import android.support.v4.content.res.ResourcesCompat
+import kotlinx.android.synthetic.main.activity_bottom_nav.*
 
 
 class BottomNavActivity : AppCompatActivity() {
@@ -24,25 +28,25 @@ class BottomNavActivity : AppCompatActivity() {
 
         val bottombar = find<BottomNavigationBar>(R.id.bottomBar)
 
+        setTypefaceToolbar()
+
         bottombar
                 .setMode(BottomNavigationBar.MODE_FIXED)
                 .setActiveColor(R.color.black)
-                .addItem(BottomNavigationItem(R.drawable.ic_home_black_24dp,"Home"))
-                .addItem(BottomNavigationItem(R.drawable.ic_star_black_24dp,"Favs"))
+                .addItem(BottomNavigationItem(R.drawable.ic_home_black_24dp,"APOD"))
+                .addItem(BottomNavigationItem(R.drawable.ic_list_black_24dp,"Lista"))
+                .addItem(BottomNavigationItem(R.drawable.ic_favorite_black_24dp,"Favoritos"))
                 .initialise()
 
-        showListApods()
+        showApod()
 
         bottombar.setTabSelectedListener(object : BottomNavigationBar.OnTabSelectedListener {
 
             override fun onTabSelected(position: Int) {
                 when(position){
-                    0 -> {
-                        showListApods()
-                    }
-                    1 -> {
-                        showFavorites()
-                    }
+                    0 -> { showApod() }
+                    1 -> { showListApods() }
+                    2 -> { showFavorites() }
                     else -> {}
                 }
             }
@@ -51,13 +55,27 @@ class BottomNavActivity : AppCompatActivity() {
         })
     }
 
-
-
+    fun showApod(){
+        supportFragmentManager.beginTransaction().replace(R.id.container, ApodFragment() , "apod").commit()
+    }
     fun showListApods(){
-        supportFragmentManager.beginTransaction().replace(R.id.container, ApodsListFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.container, ApodsListFragment(), "list").commit()
     }
     fun showFavorites(){
         //supportFragmentManager.beginTransaction().replace(R.id.container, ApodsFavorites()).commit()
     }
+
+
+    private fun setTypefaceToolbar() {
+        val typeface = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            resources.getFont(R.font.quicksand)
+        } else {
+            ResourcesCompat.getFont(this, R.font.quicksand)
+        }
+        toolbarTitle.typeface = typeface
+    }
+
+
+
 
 }

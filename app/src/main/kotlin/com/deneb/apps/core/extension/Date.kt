@@ -16,3 +16,10 @@ fun Date.oneMonthless() : String {
     c.add(Calendar.MONTH, -1)
     return c.time.formatToSringDate()
 }
+
+fun Date.pastTenOclock() : Boolean{
+    val c = Calendar.getInstance()
+    c.time = this
+    val hour = c.get(Calendar.HOUR_OF_DAY)
+    return hour > 10
+}
