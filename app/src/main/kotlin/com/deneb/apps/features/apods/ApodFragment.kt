@@ -1,14 +1,12 @@
 package com.deneb.apps.features.apods
 
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import com.deneb.apps.R
 import com.deneb.apps.core.exception.Failure
-import com.deneb.apps.core.extension.failure
-import com.deneb.apps.core.extension.loadFromUrl
-import com.deneb.apps.core.extension.observe
-import com.deneb.apps.core.extension.viewModel
+import com.deneb.apps.core.extension.*
 import com.deneb.apps.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.fragment_apod.*
 import org.jetbrains.anko.support.v4.toast
@@ -43,6 +41,8 @@ class ApodFragment : BaseFragment() {
         ivCardApod.loadFromUrl(apod?.url!!)
         titleApod.text = apod.title
         dateApod.text = apod.date
+        val preferences = AppPreferences.getPreferences()
+        preferences.edit().putString("dateApod", apod.date).apply()
     }
 
     private fun handleFailure(failure: Failure?) {

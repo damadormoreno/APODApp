@@ -19,6 +19,7 @@ import android.app.Application
 import com.deneb.apps.core.di.ApplicationComponent
 import com.deneb.apps.core.di.ApplicationModule
 import com.deneb.apps.core.di.DaggerApplicationComponent
+import com.deneb.apps.core.extension.AppPreferences
 import com.squareup.leakcanary.LeakCanary
 
 class AndroidApplication : Application() {
@@ -34,6 +35,7 @@ class AndroidApplication : Application() {
         super.onCreate()
         this.injectMembers()
         this.initializeLeakDetection()
+        AppPreferences.init(this)
     }
 
     private fun injectMembers() = appComponent.inject(this)
