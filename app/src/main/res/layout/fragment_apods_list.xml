@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".features.apods.ApodsListFragment">
+    tools:context=".features.apods.ApodsListFragment"
+    android:background="@color/primary_dark">
 
 <android.support.v7.widget.RecyclerView
     android:id="@+id/rvApods"
@@ -22,6 +23,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        />
 
 </android.support.constraint.ConstraintLayout>
