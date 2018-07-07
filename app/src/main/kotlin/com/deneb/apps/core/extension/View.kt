@@ -16,18 +16,22 @@
 package com.deneb.apps.core.extension
 
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.support.annotation.LayoutRes
 import android.support.v4.app.FragmentActivity
+import android.support.v4.content.res.ResourcesCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.target.BaseTarget
 import com.bumptech.glide.request.target.SizeReadyCallback
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
+import com.deneb.apps.R
 
 
 fun View.cancelTransition() {
@@ -54,6 +58,15 @@ fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentA
     val target: Target<Drawable> = ImageViewBaseTarget(this,
             activity)
     Glide.with(context.applicationContext).load(url).into(target)
+}
+
+fun TextView.setTypefaceQuickSand() {
+    val typeface = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        resources.getFont(R.font.quicksandbold)
+    } else {
+        ResourcesCompat.getFont(context.applicationContext, R.font.quicksand)
+    }
+    this.typeface = typeface
 }
 
 private class ImageViewBaseTarget (var imageView: ImageView?, var activity: FragmentActivity?) : BaseTarget<Drawable>() {

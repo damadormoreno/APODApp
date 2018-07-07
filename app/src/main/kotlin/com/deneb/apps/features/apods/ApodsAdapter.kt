@@ -11,6 +11,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 import javax.inject.Inject
 import kotlin.properties.Delegates
 import com.deneb.apps.core.extension.extractYTId
+import com.deneb.apps.core.extension.setTypefaceQuickSand
 
 
 class ApodsAdapter
@@ -39,6 +40,7 @@ class ApodsAdapter
                 itemView.ivApod.loadFromUrl(apodView.url)
             }
             itemView.tvTitle.text = apodView.title
+            itemView.tvTitle.setTypefaceQuickSand()
             itemView.onClick {  }
         }
     }
