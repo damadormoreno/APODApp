@@ -10,9 +10,7 @@ import com.deneb.apps.core.di.ApplicationComponent
 import com.deneb.apps.features.apods.ApodFragment
 import com.deneb.apps.features.apods.ApodsListFragment
 import org.jetbrains.anko.find
-import android.os.Build
-import android.support.v4.content.res.ResourcesCompat
-import com.deneb.apps.core.extension.setTypefaceQuickSand
+import com.deneb.apps.core.extension.setTypefaceQuickSandBold
 import kotlinx.android.synthetic.main.activity_bottom_nav.*
 
 
@@ -29,7 +27,7 @@ class BottomNavActivity : AppCompatActivity() {
 
         val bottombar = find<BottomNavigationBar>(R.id.bottomBar)
 
-        toolbarTitle.setTypefaceQuickSand()
+        toolbarTitle.setTypefaceQuickSandBold()
 
         bottombar
                 .setMode(BottomNavigationBar.MODE_FIXED)

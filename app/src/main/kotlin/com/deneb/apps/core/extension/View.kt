@@ -60,9 +60,18 @@ fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentA
     Glide.with(context.applicationContext).load(url).into(target)
 }
 
-fun TextView.setTypefaceQuickSand() {
+fun TextView.setTypefaceQuickSandBold() {
     val typeface = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         resources.getFont(R.font.quicksandbold)
+    } else {
+        ResourcesCompat.getFont(context.applicationContext, R.font.quicksandbold)
+    }
+    this.typeface = typeface
+}
+
+fun TextView.setTypefaceQuickSand() {
+    val typeface = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        resources.getFont(R.font.quicksand)
     } else {
         ResourcesCompat.getFont(context.applicationContext, R.font.quicksand)
     }

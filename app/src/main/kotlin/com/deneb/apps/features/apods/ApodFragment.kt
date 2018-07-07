@@ -1,7 +1,6 @@
 package com.deneb.apps.features.apods
 
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import com.deneb.apps.R
@@ -39,6 +38,8 @@ class ApodFragment : BaseFragment() {
 
     private fun renderApod(apod: ApodView?) {
         ivCardApod.loadFromUrl(apod?.url!!)
+        titleApod.setTypefaceQuickSand()
+        dateApod.setTypefaceQuickSand()
         titleApod.text = apod.title
         dateApod.text = apod.date
         val preferences = AppPreferences.getPreferences()
