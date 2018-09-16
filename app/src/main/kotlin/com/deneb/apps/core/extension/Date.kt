@@ -10,10 +10,10 @@ fun Date.formatToSringDate(): String{
     return sdf.format(this)
 }
 
-fun Date.oneMonthless() : String {
+fun Date.oneWeekless() : String {
     val c = Calendar.getInstance()
     c.time = this
-    c.add(Calendar.MONTH, -1)
+    c.add(Calendar.WEEK_OF_MONTH, -1)
     return c.time.formatToSringDate()
 }
 

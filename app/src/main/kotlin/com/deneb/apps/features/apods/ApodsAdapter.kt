@@ -1,8 +1,10 @@
 package com.deneb.apps.features.apods
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.deneb.apps.R
 import com.deneb.apps.core.extension.inflate
 import com.deneb.apps.core.extension.loadFromUrl
@@ -28,22 +30,28 @@ class ApodsAdapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(collection[position])
+        if (collection.size == position + 1) {
+            //TODO: Cargar más apods
+            Log.d("Cargar", "Llamada")
+        }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(apodView: ApodView) {
-            if (apodView.media_type.equals("video")){
+            if (apodView.media_type.equals("video")) {
                 itemView.ivYTPlayer.visibility = View.VISIBLE
                 itemView.ivApod.loadFromUrl("http://img.youtube.com/vi/${apodView.url.extractYTId()}/mqdefault.jpg")
-            }else{
+            } else {
                 itemView.ivYTPlayer.visibility = View.GONE
                 itemView.ivApod.loadFromUrl(apodView.url)
             }
             itemView.tvTitle.text = apodView.title
             itemView.tvTitle.setTypefaceQuickSandBold()
-            itemView.onClick {  }
+            itemView.onClick {
+                //TODO: Pasar al detalle }
+
+            }
         }
+
     }
-
-
 }

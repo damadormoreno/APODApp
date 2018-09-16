@@ -40,7 +40,7 @@
                 android:id="@+id/ivYTPlayer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/ic_play_circle_filled_black_24dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/ivApod"
                 app:layout_constraintEnd_toEndOf="parent"
