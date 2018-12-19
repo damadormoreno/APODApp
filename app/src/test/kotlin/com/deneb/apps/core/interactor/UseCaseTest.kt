@@ -19,7 +19,7 @@ import com.deneb.apps.AndroidTest
 import com.deneb.apps.core.exception.Failure
 import com.deneb.apps.core.functional.Either
 import com.deneb.apps.core.functional.Either.Right
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
 

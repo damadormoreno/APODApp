@@ -47,9 +47,8 @@ class ApodsAdapter
             }
             itemView.tvTitle.text = apodView.title
             itemView.tvTitle.setTypefaceQuickSandBold()
-            itemView.onClick {
-                //TODO: Pasar al detalle }
-
+            itemView.setOnClickListener {
+                //TODO: Pasar al detalle
             }
         }
 
