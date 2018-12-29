@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.deneb.apps.R
 import com.deneb.apps.core.exception.Failure
 import com.deneb.apps.core.extension.*
+import com.deneb.apps.core.navigation.Navigator
 import com.deneb.apps.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.fragment_apods_list.*
 import org.jetbrains.anko.support.v4.toast
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 class ApodsListFragment : BaseFragment() {
 
-
+    @Inject lateinit var navigator: Navigator
     @Inject lateinit var apodAdapter: ApodsAdapter
 
     private lateinit var apodsListViewModel: ApodsListViewModel
@@ -41,6 +42,10 @@ class ApodsListFragment : BaseFragment() {
     private fun initializeView() {
         rvApods.layoutManager = LinearLayoutManager(activity)
         rvApods.adapter = apodAdapter
+        apodAdapter.clickListener = { apod ->
+            //TODO: Pasar al detalle a través del navigator
+            navigator.showApodDetails(activity!!, apod)
+        }
 
     }
 

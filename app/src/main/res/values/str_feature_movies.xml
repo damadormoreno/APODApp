@@ -6,6 +6,8 @@
     <string name="movie_details_director">Director</string>
     <string name="movie_details_year">Year</string>
 
+    <string name="apod_details_screen_title">Apod Details</string>
+
     <!-- Animations -->
     <string name="movie_transition_poster">moviePosterTransition</string>
 </resources>

@@ -23,12 +23,14 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.FragmentActivity
 import android.view.View
 import android.widget.ImageView
+import com.deneb.apps.features.apods.ApodDetailActivity
 import com.deneb.apps.features.login.Authenticator
 import com.deneb.apps.features.login.LoginActivity
 import com.deneb.apps.features.movies.MovieDetailsActivity
 import com.deneb.apps.features.movies.MovieView
 import com.deneb.apps.features.movies.MoviesActivity
 import com.deneb.apps.core.extension.empty
+import com.deneb.apps.features.apods.ApodView
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -54,6 +56,13 @@ class Navigator
         val activityOptions = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
         activity.startActivity(intent, activityOptions.toBundle())
+    }
+    fun showApodDetails(activity: FragmentActivity, apodView: ApodView) {
+        val intent = ApodDetailActivity.callingIntent(activity, apodView)
+        //val sharedView = navigationExtras.transitionSharedElement as ImageView
+        /*val activityOptions = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)*/
+        activity.startActivity(intent)
     }
 
     private val VIDEO_URL_HTTP = "http://www.youtube.com/watch?v="

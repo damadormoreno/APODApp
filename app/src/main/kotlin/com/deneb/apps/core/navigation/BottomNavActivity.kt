@@ -1,17 +1,17 @@
 package com.deneb.apps.core.navigation
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.deneb.apps.AndroidApplication
 import com.deneb.apps.R
 import com.deneb.apps.core.di.ApplicationComponent
+import com.deneb.apps.core.extension.setTypefaceQuickSandBold
 import com.deneb.apps.features.apods.ApodFragment
 import com.deneb.apps.features.apods.ApodsListFragment
-import org.jetbrains.anko.find
-import com.deneb.apps.core.extension.setTypefaceQuickSandBold
 import kotlinx.android.synthetic.main.activity_bottom_nav.*
+import org.jetbrains.anko.find
 
 
 class BottomNavActivity : AppCompatActivity() {

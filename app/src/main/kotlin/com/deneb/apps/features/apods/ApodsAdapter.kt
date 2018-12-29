@@ -14,6 +14,7 @@ import javax.inject.Inject
 import kotlin.properties.Delegates
 import com.deneb.apps.core.extension.extractYTId
 import com.deneb.apps.core.extension.setTypefaceQuickSandBold
+import com.deneb.apps.core.navigation.Navigator
 
 
 class ApodsAdapter
@@ -23,13 +24,15 @@ class ApodsAdapter
         _, _, _ -> notifyDataSetChanged()
     }
 
+    internal var clickListener: (ApodView) -> Unit = { }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ViewHolder(parent.inflate(R.layout.row_apod))
 
     override fun getItemCount(): Int = collection.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(collection[position])
+        holder.bind(collection[position], clickListener)
         if (collection.size == position + 1) {
             //TODO: Cargar más apods
             Log.d("Cargar", "Llamada")
@@ -37,7 +40,7 @@ class ApodsAdapter
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(apodView: ApodView) {
+        fun bind(apodView: ApodView, clickListener: (ApodView) -> Unit) {
             if (apodView.media_type.equals("video")) {
                 itemView.ivYTPlayer.visibility = View.VISIBLE
                 itemView.ivApod.loadFromUrl("http://img.youtube.com/vi/${apodView.url.extractYTId()}/mqdefault.jpg")
@@ -48,7 +51,7 @@ class ApodsAdapter
             itemView.tvTitle.text = apodView.title
             itemView.tvTitle.setTypefaceQuickSandBold()
             itemView.setOnClickListener {
-                //TODO: Pasar al detalle
+                clickListener(apodView)
             }
         }
 

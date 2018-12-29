@@ -16,6 +16,7 @@
 package com.deneb.apps.core.di
 
 import com.deneb.apps.AndroidApplication
+import com.deneb.apps.features.apods.ApodDetailFragment
 import com.deneb.apps.core.di.viewmodel.ViewModelModule
 import com.deneb.apps.core.navigation.BottomNavActivity
 import com.deneb.apps.features.movies.MovieDetailsFragment
@@ -38,4 +39,5 @@ interface ApplicationComponent {
 
     fun inject(apodListFragment: ApodsListFragment)
     fun inject(apodFragment: ApodFragment)
+    fun inject(apodDetailFragment: ApodDetailFragment)
 }

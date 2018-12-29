@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.deneb.apps">
-
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!-- Application -->
     <application
         android:name=".AndroidApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".features.apods.ApodDetailActivity"
+            android:label="@string/apod_details_screen_title"
+            android:theme="@style/AppTheme.Translucent" />
         <!-- Activities -->
         <activity
             android:name=".core.navigation.RouteActivity"
             android:noHistory="true"
-            android:theme="@style/AppTheme.Translucent">
-
-        </activity>
+            android:theme="@style/AppTheme.Translucent" />
         <activity
             android:name=".features.login.LoginActivity"
-            android:label="@string/login_screen_title"></activity>
+            android:label="@string/login_screen_title" />
         <activity
             android:name=".features.movies.MoviesActivity"
-            android:label="@string/movies_screen_title"></activity>
+            android:label="@string/movies_screen_title" />
         <activity
             android:name=".features.movies.MovieDetailsActivity"
             android:label="@string/movie_details_screen_title"
-            android:theme="@style/AppTheme.Translucent"></activity>
+            android:theme="@style/AppTheme.Translucent" />
         <activity android:name=".core.navigation.BottomNavActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
